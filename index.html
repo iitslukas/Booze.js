@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Cocktail Gallery</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
+    text-align:center;
+}
+
+h1{
+    padding:30px;
+    font-size:40px;
+    letter-spacing:2px;
+}
+
+#mojDivVJs{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap:25px;
+    padding:40px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.drinkCard{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    color:black;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.drinkCard:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
+
+.drinkCard img{
+    width:100%;
+    border-radius:10px;
+}
+
+.drinkName{
+    margin-top:10px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+footer{
+    margin-top:30px;
+    padding:20px;
+    opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🍸 Cocktail Gallery</h1>
+
+<div id="mojDivVJs"></div>
+
+<footer>
+Cocktail API demo
+</footer>
+
+<script>
+
+const mojDivVJs = document.getElementById("mojDivVJs")
+
+fetch("https://boozeapi.com/api/v1/cocktails")
+.then((odpoved_raw)=>{
+    return odpoved_raw.json()
+})
+.then((odpoved)=>{
+
+    console.log(odpoved.data)
+
+    odpoved.data.forEach((drink)=>{
+
+        const card = document.createElement("div")
+        card.className = "drinkCard"
+
+        const drinkImg = document.createElement("img")
+        drinkImg.src = drink.image
+
+        const drinkName = document.createElement("div")
+        drinkName.className = "drinkName"
+        drinkName.textContent = drink.name
+
+        card.appendChild(drinkImg)
+        card.appendChild(drinkName)
+
+        mojDivVJs.appendChild(card)
+    })
+
+})
+
+</script>
+
+</body>
+</html>
