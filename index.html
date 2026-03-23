@@ -90,7 +90,7 @@ Cocktail API demo
 
                 const drinkImg = document.createElement("img");
                 drinkImg.src = drink.image;
-                drinkImg.style.width = "100px"; // Len aby ti obrázky nerozbili web, kým pridáš CSS
+                drinkImg.style.width = "100px";
 
                 const drinkName = document.createElement("div");
                 drinkName.className = "drinkName";
@@ -104,7 +104,6 @@ Cocktail API demo
         })
         .catch(err => console.error("Chyba pri načítaní:", err));
 
-    // Tvoja správa do konzoly
     console.log({"message": "lalalala"});
 </script>
 
